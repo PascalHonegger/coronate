@@ -9,8 +9,8 @@ open Data
 open Belt
 module Id = Data.Id
 
-let sortFirstName = Hooks.GetString((. p) => p.Player.firstName)
-let sortLastName = Hooks.GetString((. p) => p.Player.lastName)
+let sortFirstName = Hooks.GetString(p => p.Player.firstName)
+let sortLastName = Hooks.GetString(p => p.Player.lastName)
 
 module Selecting = {
   @react.component

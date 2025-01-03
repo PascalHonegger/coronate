@@ -14,9 +14,9 @@ let changelog_url = "https://github.com/johnridesabike/coronate/blob/master/CHAN
 let faq_url = "https://github.com/johnridesabike/coronate/blob/master/docs/faq.md"
 
 /* Pass a `compare` function to avoid polymorphic compare errors. */
-type direction<'data, 'field> = (('field, 'field) => int, (. 'data) => 'field, 'data, 'data) => int
-let ascend = (cmp, getter, a, b) => cmp(getter(. a), getter(. b))
-let descend = (cmp, getter, a, b) => cmp(getter(. b), getter(. a))
+type direction<'data, 'field> = (('field, 'field) => int, 'data => 'field, 'data, 'data) => int
+let ascend = (cmp, getter, a, b) => cmp(getter(a), getter(b))
+let descend = (cmp, getter, a, b) => cmp(getter(b), getter(a))
 
 module Array = {
   type t<'a> = array<'a>

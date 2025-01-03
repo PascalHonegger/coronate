@@ -61,7 +61,7 @@ module Splash = {
                 alt="Buy Me A Coffee"
                 height="60"
                 width="217"
-                style={ReactDOM.Style.make(~height="60px ", ~width="217px ", ())}
+                style={ReactDOM.Style.make(~height="60px", ~width="217px", ())}
               />
             </a>
           </p>
@@ -144,7 +144,7 @@ module TimeCalculator = {
                   id="playerCount"
                   type_="number"
                   value={Int.toString(players)}
-                  onChange={updateInt(setPlayers, minPlayers)}
+                  onChange={updateInt(setPlayers, minPlayers, ...)}
                   min={Int.toString(minPlayers)}
                   style={ReactDOM.Style.make(~width="40px", ())}
                 />
@@ -159,7 +159,7 @@ module TimeCalculator = {
                   id="breakTime"
                   type_="number"
                   value={Int.toString(breakTime)}
-                  onChange={updateInt(setBreakTime, minBreakTime)}
+                  onChange={updateInt(setBreakTime, minBreakTime, ...)}
                   step=5.0
                   min={Int.toString(minBreakTime)}
                   style={ReactDOM.Style.make(~width="40px", ())}
@@ -176,7 +176,7 @@ module TimeCalculator = {
                   id="totalTime"
                   type_="number"
                   value={Float.toString(totalTime)}
-                  onChange={updateFloat(setTotalTime, minTotalTime)}
+                  onChange={updateFloat(setTotalTime, minTotalTime, ...)}
                   step=0.5
                   min={Float.toString(minTotalTime)}
                   style={ReactDOM.Style.make(~width="40px", ())}

@@ -50,7 +50,7 @@ let make = (~children, ~tourneyId, ~windowDispatch as _=?) => {
 
   children({
     activePlayers,
-    getPlayer: Player.getMaybe(players),
+    getPlayer: Player.getMaybe(players, ...),
     isItOver,
     isNewRoundReady,
     players,

@@ -136,7 +136,7 @@ module SelectTieBreaks = {
       } else {
         setTourney({
           ...tourney,
-          tieBreaks: Js.Array2.concat(tourney.tieBreaks, [defaultId(id)]),
+          tieBreaks: Js.Array.concat(tourney.tieBreaks, [defaultId(id)]),
         })
       }
 
@@ -167,7 +167,7 @@ module SelectTieBreaks = {
             {React.string(" Move down")}
           </button>
           <button
-            className={Cn.append("button-micro", "button-primary"->Cn.onSome(selectedTb))}
+            className={`button-micro ${selectedTb != None ? "button-primary" : ""}`}
             disabled={selectedTb == None}
             onClick={_ => setSelectedTb(_ => None)}>
             {React.string("Done")}

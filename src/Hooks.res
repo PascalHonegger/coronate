@@ -17,18 +17,18 @@ let useBool = init => {
   let (state, setState) = React.Uncurried.useReducer(reducer, init)
   {
     state,
-    setTrue: () => setState(. true),
-    setFalse: () => setState(. false),
+    setTrue: () => setState(true),
+    setFalse: () => setState(false),
   }
 }
 
 /* Begin the sortable table hook. */
 
 type getter<'a> =
-  | GetString((. 'a) => string)
-  | GetInt((. 'a) => int)
-  | GetFloat((. 'a) => float)
-  | GetDate((. 'a) => Js.Date.t)
+  | GetString('a => string)
+  | GetInt('a => int)
+  | GetFloat('a => float)
+  | GetDate('a => Js.Date.t)
 
 type tableState<'a> = {
   isDescending: bool,
@@ -51,10 +51,10 @@ let sortedTableReducer = (state, action) => {
   }
   let direction = newState.isDescending ? Utils.descend : Utils.ascend
   let sortFunc = switch newState.column {
-  | GetString(f) => direction(compare, (. str) => f(. str)->Js.String2.toLowerCase)
-  | GetInt(f) => direction(compare, f)
-  | GetFloat(f) => direction(compare, f)
-  | GetDate(f) => direction(compare, (. date) => f(. date)->Js.Date.getTime)
+  | GetString(f) => direction(compare, str => f(str)->Js.String2.toLowerCase, ...)
+  | GetInt(f) => direction(compare, f, ...)
+  | GetFloat(f) => direction(compare, f, ...)
+  | GetDate(f) => direction(compare, date => f(date)->Js.Date.getTime, ...)
   }
   let table = Belt.SortArray.stableSortBy(newState.table, sortFunc)
   {...newState, table}

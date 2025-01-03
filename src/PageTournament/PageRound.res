@@ -170,11 +170,11 @@ module MatchRow = {
     }
     let setMatchResultBlur = event => setMatchResult(ReactEvent.Focus.target(event)["value"])
     let setMatchResultChange = event => setMatchResult(ReactEvent.Form.target(event)["value"])
-    <tr
-      className={Cn.append(
-        className,
-        Cn.mapSome(selectedMatch, id => Id.eq(m.id, id) ? "selected" : ""),
-      )}>
+    let selected = switch selectedMatch {
+    | None => false
+    | Some(selectedValue) => Id.eq(m.id, selectedValue)
+    }
+    <tr className={`${className} ${selected ? "selected" : ""}}`}>
       <th className={"pageround__row-id table__number"} scope="row">
         {string_of_int(pos + 1)->React.string}
       </th>

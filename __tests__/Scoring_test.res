@@ -22,12 +22,14 @@ test("K Factor is calculated correctly", () => {
 })
 
 test("Ratings are calculated correctly", () => {
-  let calcRatingsForPair = Data.Ratings.calcNewRatings(
-    ~whiteRating=newb.rating,
-    ~blackRating=master.rating,
-    ~whiteMatchCount=newb.matchCount,
-    ~blackMatchCount=master.matchCount,
-  )
+  let calcRatingsForPair =
+    Data.Ratings.calcNewRatings(
+      ~whiteRating=newb.rating,
+      ~blackRating=master.rating,
+      ~whiteMatchCount=newb.matchCount,
+      ~blackMatchCount=master.matchCount,
+      ...
+    )
   let newbWon = calcRatingsForPair(~result=Data.Match.Result.WhiteWon)
   // not really a good example for this next one because they don't change:
   let masterWon = calcRatingsForPair(~result=Data.Match.Result.BlackWon)

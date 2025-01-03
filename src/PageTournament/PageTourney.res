@@ -51,7 +51,7 @@ module Footer = {
   }
 }
 
-let footerFunc = (tournament, ()) => <Footer tournament />
+let footerFunc = tournament => <Footer tournament />
 
 let noDraggy = e => ReactEvent.Mouse.preventDefault(e)
 
@@ -69,7 +69,7 @@ module Sidebar = {
       _,
     } = tournament
     let {roundList, _} = tourney
-    let isRoundComplete = Rounds.isRoundComplete(roundList, activePlayers)
+    let isRoundComplete = Rounds.isRoundComplete(roundList, activePlayers, ...)
     let newRound = event => {
       ReactEvent.Mouse.preventDefault(event)
       let confirmText = "All rounds have completed. Are you sure you want to begin a new " ++ "one?"
@@ -251,7 +251,9 @@ let make = (~tourneyId, ~subPage: TourneyPage.t, ~windowDispatch) =>
   <LoadTournament tourneyId windowDispatch>
     {tournament =>
       <Window.Body
-        windowDispatch footerFunc={footerFunc(tournament)} sidebarFunc={sidebarFunc(tournament)}>
+        windowDispatch
+        footerFunc={() => footerFunc(tournament)}
+        sidebarFunc={sidebarFunc(tournament, ...)}>
         {switch subPage {
         | Players => <PageTourneyPlayers tournament />
         | Scores => <PageTourneyScores tournament />

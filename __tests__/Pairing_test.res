@@ -47,7 +47,7 @@ describe("The lowest-ranking player is automatically picked for byes.", () => {
   )
   test("The lowest-ranking player is returned", () =>
     switch byedPlayer {
-    | None => assert false
+    | None => assert(false)
     | Some(player) => expect(Data.Pairing.id(player))->toBe(TestData.newbieMcNewberson.id)
     }
   )
@@ -59,7 +59,7 @@ test("The bye signup queue works", () => {
   // Newbie McNewberson already played the first bye round
   let (_, byedPlayer) = Data.Pairing.setByePlayer(byeQueue, Data.Id.dummy, dataPreBye)
   switch byedPlayer {
-  | None => assert false
+  | None => assert(false)
   | Some(player) => expect(Data.Pairing.id(player))->toBe(TestData.joelRobinson.id)
   }
 })
@@ -69,7 +69,7 @@ test(
     let dataPreBye = loadPairData(TestData.byeRoundTourney3)
     let (_, byedPlayer) = Data.Pairing.setByePlayer([], Data.Id.dummy, dataPreBye)
     switch byedPlayer {
-    | None => assert false
+    | None => assert(false)
     | Some(player) => expect(Data.Pairing.id(player))->toBe(TestData.newbieMcNewberson.id)
     }
   },

@@ -120,10 +120,9 @@ let make = (~children, ~className) => {
   let (state, dispatch) = React.useReducer(windowReducer, initialWinState)
   let {isMobileSidebarOpen, isDialogOpen, title} = state
   <div
-    className={Cn.append(
-      className,
-      isMobileSidebarOpen ? "mobile-sidebar-open" : "mobile-sidebar-closed",
-    )}>
+    className={`${className} ${isMobileSidebarOpen
+        ? "mobile-sidebar-open"
+        : "mobile-sidebar-closed"}`}>
     <TitleBar isMobileSidebarOpen title dispatch />
     {children(dispatch)}
     <Externals.Dialog
@@ -195,7 +194,7 @@ let sidebarCallback = dispatch => <DefaultSidebar dispatch />
 module Body = {
   @react.component
   let make = (~children, ~windowDispatch, ~footerFunc=?, ~sidebarFunc=sidebarCallback) =>
-    <div className={Cn.append("winBody", "winBody-hasFooter"->Cn.onSome(footerFunc))}>
+    <div className={`winBody ${footerFunc != None ? "winBody-hasFooter" : ""})`}>
       <div className="win__sidebar"> {sidebarFunc(windowDispatch)} </div>
       <div className="win__content"> children </div>
       {switch footerFunc {

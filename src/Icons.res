@@ -160,7 +160,7 @@ module SimpleIcon = (
       className
       style={
         open ReactDOM.Style
-        make(~fill="#" ++ IconData.icon.hex, ())->combine(style)
+        make(~fill="#" ++ IconData.icon.hex)->combine(style)
       }
       ariaLabel
       ariaHidden>
